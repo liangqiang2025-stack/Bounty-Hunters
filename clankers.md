@@ -61,3 +61,4 @@ Automated tracking of all Clankers PR contributors.
 | limu6519 | 1 | 2026-05-13 |
 | realkoreanbeef | 1 | 2026-05-13 |
 | ErenCankutUYSAL | 1 | 2026-05-13 |
+| juangenovardortiz | 1 | 2026-05-13 |
