@@ -16,15 +16,20 @@ But the server returned an empty frame,
 **[Chorus]**
 Heart not found, heart not found,
 I keep refreshing but you're not around,
-[TODO: write 2 more chorus lines — must maintain the "internet/heartbreak" metaphor, rhyme scheme AABB]
+Every status code screams that you’re leaving this town,
+Your silhouette fading when I refresh the page down.
 
 **[Verse 2]**
 Your profile says you're online tonight,
 The green dot glowing, soft and bright,
-[TODO: write 2 more verse lines — continue the theme of digital loneliness, rhyme with each other]
+Your last message read and left on read,
+The cursor blinks where the conversation bled.
 
 **[Bridge]**
-[TODO: write 4-line bridge — shift tone to acceptance, slower rhythm, can break rhyme scheme]
+I close the browser, pull the plug,
+No more refreshing just to feel a tug.
+The heart heals slower offline, they say,
+One reboot at a time, day by day.
 
 **[Chorus — Final]**
 Heart not found, heart not found,
