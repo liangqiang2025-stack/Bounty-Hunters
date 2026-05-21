@@ -93,11 +93,26 @@ def generate_operation_id_for_path(
 
 
 def generate_unique_id(route: "APIRoute") -> str:
-    operation_id = f"{route.name}{route.path_format}"
-    operation_id = re.sub(r"\W", "_", operation_id)
+    operation_id = route.path_format.replace("/", "_").strip("_")
+    if len(operation_id) > 60:
+        operation_id = operation_id[:60]
     assert route.methods
-    operation_id = f"{operation_id}_{list(route.methods)[0].lower()}"
+    method = list(route.methods)[0].lower()
+    operation_id = f"{method}_{operation_id}_{route.name}"
+    operation_id = re.sub(r"\W", "_", operation_id)
     return operation_id
+
+def generate_unique_id_with_collision_detection(
+    route: "APIRoute", used_ids: set[str]
+) -> str:
+    """Generate a unique operation ID, appending a suffix if duplicate."""
+    operation_id = generate_unique_id(route)
+    if operation_id not in used_ids:
+        return operation_id
+    suffix = 1
+    while f"{operation_id}_{suffix}" in used_ids:
+        suffix += 1
+    return f"{operation_id}_{suffix}"
 
 
 def deep_dict_update(main_dict: dict[Any, Any], update_dict: dict[Any, Any]) -> None:
