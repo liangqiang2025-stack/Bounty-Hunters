@@ -281,8 +281,8 @@ class TLSHandshake:
             self._derive_master_secret()
             return True
 
-        # BUG 4: bare except with pass silently swallows all errors
-        except:
+        # BUG 4: fixed - only catch expected exceptions
+        except (ValueError, struct.error):
             pass
         return False
 
