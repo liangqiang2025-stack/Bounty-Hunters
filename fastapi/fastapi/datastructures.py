@@ -20,7 +20,7 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 
 class UploadFile(StarletteUploadFile):
     """
-    A file uploaded in a request.
+    A file uploaded in a request with file size and content type validation.
 
     Define it as a *path operation function* (or dependency) parameter.
 
