@@ -20,9 +20,26 @@ async def http_exception_handler(request: Request, exc: HTTPException) -> Respon
 async def request_validation_exception_handler(
     request: Request, exc: RequestValidationError
 ) -> JSONResponse:
+    error_response = {
+        "detail": jsonable_encoder(exc.errors()),
+        "path": request.url.path,
+        "method": request.method,
+    }
+    # Try to include body (available when body() has been consumed)
+    body = exc.body
+    if body is not None:
+        # Redact sensitive fields
+        sensitive_fields = {"password", "token", "secret", "api_key", "authorization", "credit_card"}
+        if isinstance(body, dict):
+            error_response["body"] = {
+                k: ("***REDACTED***" if k.lower() in sensitive_fields else v)
+                for k, v in body.items()
+            }
+        else:
+            error_response["body"] = body
     return JSONResponse(
         status_code=422,
-        content={"detail": jsonable_encoder(exc.errors())},
+        content=error_response,
     )
 
 
