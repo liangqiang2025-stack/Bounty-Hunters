@@ -1,5 +1,5 @@
-#
-# cleanup.sh - Log file cleanup utility
+#!/bin/bash
+## cleanup.sh - Log file cleanup utility
 # Removes old log files and compresses recent ones
 #
 
