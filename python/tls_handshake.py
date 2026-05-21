@@ -235,7 +235,20 @@ class TLSHandshake:
             elif ext_type == EXT_SIGNATURE_ALGORITHMS:
                 pass  # stored in ext.data for later use
             elif ext_type == EXT_SUPPORTED_VERSIONS:
-                pass  # stored in ext.data for later use
+                pass  # stored in ext.data for later use            elif ext_type == EXT_SNI:
+                # Parse SNI per RFC 6066: ServerNameList with name_type 0x00 = host_name
+                sni_offset = 0
+                if len(ext_data) >= 2:
+                    sni_list_len = struct.unpack("!H", ext_data[sni_offset:sni_offset + 2])[0]
+                    sni_offset += 2
+                    while sni_offset + 3 < len(ext_data) and sni_offset < 2 + sni_list_len:
+                        name_type = ext_data[sni_offset]
+                        name_len = struct.unpack("!H", ext_data[sni_offset + 1:sni_offset + 3])[0]
+                        sni_offset += 3
+                        if name_type == 0x00 and name_len <= len(ext_data) - sni_offset:
+                            self.server_name = ext_data[sni_offset:sni_offset + name_len].decode("utf-8", errors="replace")
+                            break
+                        sni_offset += name_len
 
             self.extensions[ext_type] = ext
             extensions.append(ext)
