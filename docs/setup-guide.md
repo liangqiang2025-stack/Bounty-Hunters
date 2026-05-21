@@ -33,6 +33,23 @@ pip install bounty-hunter
 
 This will install the core package and all required dependencies.
 
+
+### Step 4: Set Up Environment Variables
+
+Copy the example environment file and update the values:
+
+```bash
+cp .env.example .env
+```
+
+Edit `.env` to configure your database connection, API keys, and other settings.
+
+```bash
+pip install bounty-hunter
+```
+
+This will install the core package and all required dependencies.
+
 ### Step 5: Configure the Database
 
 Create a `config.yml` file in the project root:
